@@ -1,0 +1,5 @@
+PUBLISH_PLAN.md
+icons/
+.DS_Store
+*.zip
+node_modules/
