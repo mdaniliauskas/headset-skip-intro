@@ -1,79 +1,103 @@
 # Headset Skip Intro 🎧
 
-> **Pule aberturas de séries usando apenas o botão do seu fone de ouvido!**
+<div align="center">
 
-A simple and smart Chrome Extension that intercepts your headset's `Play/Pause` media key to automatically click "Skip Intro" or "Skip Recap" buttons on major streaming platforms (Amazon Prime Video & Netflix). If no skip button is found, it falls back to standard play/pause functionality.
+[![Português](https://img.shields.io/badge/Português-🇧🇷-green?style=for-the-badge)](#) [![English](https://img.shields.io/badge/English-🇺🇸-blue?style=for-the-badge)](./README-EN.md)
 
----
+![Banner](https://img.shields.io/badge/Chrome%20Extension-Automação%20de%20Mídia-informational?style=for-the-badge&logo=googlechrome&logoColor=white&color=0A66C2)
+![Manifest V3](https://img.shields.io/badge/Manifest-V3-brightgreen?style=for-the-badge)
 
-## 🎯 The Problem
+**Pule aberturas de séries usando apenas o botão do seu fone de ouvido!**
 
-When you are far from the keyboard or comfortably watching a series, the opening intro starts playing. To skip it, you normally have to reach for your mouse or keyboard.
+[![Desenvolvedor](https://img.shields.io/badge/Dev-Marcelo%20Daniliauskas-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mdaniliauskas)
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mdaniliauskas)
 
-## ✨ The Solution
-
-**Headset Skip Intro** is a lightweight extension that allows you to click the **Media Play/Pause** button on your wireless headset to seamlessly skip intros and recaps.
-
-1. **Intercepts** the global media shortcut from your headset.
-2. **Scans** the active tab for known "Skip Intro" selectors.
-3. **Clicks** the button automatically if found.
-4. **Falls back** and plays/pauses the video if no skip button is on screen.
+</div>
 
 ---
 
-## 🛠️ Tech Stack
+## 🚀 O Problema
 
-| Layer | Technology |
+Quando você está longe do teclado ou assistindo a uma série confortavelmente deitado, a abertura começa a tocar. Para pulá-la, normalmente você precisa se esticar para alcançar o mouse ou o teclado e clicar na tela.
+
+## ✨ A Solução
+
+**Headset Skip Intro** é uma extensão leve para o navegador que permite que você clique na tecla **Media Play/Pause** do seu fone de ouvido sem fio para pular facilmente aberturas ou recapitulações.
+
+1. **Intercepta** o atalho global de mídia do seu fone de ouvido.
+2. **Escaneia** a aba ativa na Amazon Prime Video ou Netflix procurando por botões de "Pular Abertura" ou "Skip Intro".
+3. **Clica** no botão automaticamente caso ele esteja na tela.
+4. **Reserva (Fallback)**: se nenhum botão for encontrado, a extensão faz o `Play` ou `Pause` do vídeo normalmente para não quebrar a utilidade do seu fone.
+
+---
+
+## 🛠️ Stack Tecnológica
+
+<div align="left">
+
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Google Chrome](https://img.shields.io/badge/-Google%20Chrome-4285F4?style=for-the-badge&logo=GoogleChrome&logoColor=white)
+
+</div>
+
+| Camada | Tecnologia |
 |---|---|
-| **Core** | Vanilla JavaScript (ES6+) |
-| **Platform** | Chrome Extension Manifest V3 |
-| **Permissions** | `activeTab`, `scripting` |
+| **Core logic** | Vanilla JavaScript (ES6+) |
+| **Plataforma** | Chrome Extension Manifest V3 |
+| **Permissões** | `activeTab`, `scripting` |
 | **Background** | Service Workers |
 
 ---
 
-## 📂 Project Structure
+## 📂 Estrutura do Projeto
 
 ```text
 headset-skip-intro/
 ├── manifest.json       # Configuração da extensão (Manifest V3)
 ├── background.js       # Service worker para interceptar atalhos globais
 ├── content.js          # Script injetado para manipular a DOM da página
-└── README.md           # Documentação do projeto
+├── README.md           # Documentação em Português
+└── README-EN.md        # Documentação em Inglês
 ```
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Como Começar
 
-### Prerequisites
+### Pré-requisitos
 
-- Google Chrome, Microsoft Edge, Brave or any Chromium-based browser.
+- Google Chrome, Microsoft Edge, Brave ou qualquer navegador baseado em Chromium.
 
-### Installation (Developer Mode)
+### Instalação (Modo de Desenvolvedor)
 
-1. Clone or download this repository to your local machine:
+1. Clone ou baixe este repositório para o seu computador:
    ```bash
    git clone https://github.com/mdaniliauskas/headset-skip-intro.git
    ```
-2. Open your browser and navigate to `chrome://extensions/`.
-3. Enable **Developer mode** (toggle switch on the top right).
-4. Click on **Load unpacked** (top left).
-5. Select the `headset-skip-intro` directory.
+2. Abra seu navegador e navegue até a URL: `chrome://extensions/`.
+3. Ative o **Modo do desenvolvedor** (basta ligar a chave no canto superior direito).
+4. Clique em **Carregar sem compactação** (canto superior esquerdo).
+5. Selecione a pasta `headset-skip-intro` que acabou de baixar.
 
-### ⚙️ Global Shortcut Configuration
+### ⚙️ Configuração da Tecla Global (Importante)
 
-To ensure the extension works even when the browser is minimized or you are in another app:
-1. Go to `chrome://extensions/shortcuts` in your browser.
-2. Find **"Headset Skip Intro"**.
-3. Under the "Pula a abertura ou faz o Play/Pause" shortcut (usually set to `MediaPlayPause`), change the scope from **In Chrome** to **Global**.
+Para garantir que a extensão funcione até mesmo quando o navegador estiver minimizado ou você estiver olhando pra outra janela (como do Discord ou jogo):
+1. Volte na aba `chrome://extensions/shortcuts`.
+2. Encontre a caixa do **"Headset Skip Intro"**.
+3. Embaixo de "Pula a abertura ou faz o Play/Pause" (geralmente atribuído à tecla `MediaPlayPause`), altere a opção "No Chrome" (*In Chrome*) para **Global**.
+
+---
+
+## 💻 Como funciona por baixo dos panos
+
+A extensão registra um comando de teclado customizado no `manifest.json`. O `background.js` escuta quando esse atalho é acionado pelo sistema operacional e envia uma mensagem para a aba ativa que está rodando a stream. O `content.js` lê essa mensagem e, ativamente, procura por certos seletores CSS pré-definidos na tela (ex: `.skipElement`, `[data-uia="player-skip-intro"]`). Se encontrar, clica. Se não os encontrar, ele procura por botões contendo textos chaves (como "skip", "pular"). Por último, ele localiza o elemento `<video>` da página e dá `play()` ou `pause()`.
 
 ---
 
-## 💻 How it Works under the hood
-
-The extension registers a command in `manifest.json`. The `background.js` listens to this command and sends a message to the active tab. The `content.js` looks for specific CSS selectors (`.skipElement`, `[data-uia="player-skip-intro"]`, etc.) and clicks them. If none are found, it searches for buttons containing texts like "skip", "pular", etc. As a last resort, it triggers `play()` or `pause()` on the closest `<video>` element, ensuring you don't lose the original functionality of your headset.
-
----
+<div align="center">
 
 *Headset Skip Intro — Suas maratonas, sem interrupções.* 🍿
+
+**Transformando ideias em soluções tecnológicas robustas e escaláveis**
+
+</div>
