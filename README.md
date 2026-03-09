@@ -1,50 +1,82 @@
 # Headset Skip Intro 🎧 v2.0
 
-Pule aberturas de séries no **Crunchyroll**, **Prime Video** e **Netflix** usando apenas o botão **MediaPlayPause** do seu fone Bluetooth.
+<div align="center">
+
+[![Português](https://img.shields.io/badge/Português-🇧🇷-green?style=for-the-badge)](#) [![English](https://img.shields.io/badge/English-🇺🇸-blue?style=for-the-badge)](./README-EN.md)
+
+![Project Banner](https://img.shields.io/badge/Crunchyroll--Netflix--Prime%20Video-Skip%20Intro-informational?style=for-the-badge&logo=googlechrome&logoColor=white&color=0A66C2)
+![Status](https://img.shields.io/badge/Status-Estável-brightgreen?style=for-the-badge)
+
+**Pule aberturas com um toque no seu fone Bluetooth**
+🎯 **Produtividade máxima para suas maratonas de animes e séries**
+
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mdaniliauskas)
+[![Email](https://img.shields.io/badge/-Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:marcelo.daniliauskas@gmail.com)
+[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mdaniliauskas)
+
+</div>
 
 ---
 
-## 🆕 O que mudou na v2.0
+## 🚀 Sobre o Projeto
 
-| | v1.0 | v2.0 |
-|---|---|---|
-| Crunchyroll | ❌ Não funcionava | ✅ Seletores corretos adicionados |
-| Arquitetura | `content.js` fazia tudo | `background.js` injeta e executa o skip |
-| Detecção de visibilidade | Não verificava | Verifica `offsetParent` (elemento visível) |
-| Fallback Play/Pause | Sim | Sim |
-| Logs de diagnóstico | Básico | Detalhado por seletor |
+O **Headset Skip Intro** é uma extensão para Chrome projetada para quem ama maratonar mas odeia perder tempo com aberturas repetitivas. Integrando-se diretamente com o botão de **MediaPlayPause** (comum em fones Bluetooth), ela permite pular intros no **Crunchyroll**, **Prime Video** e **Netflix** sem precisar tirar a mão do fone ou usar o mouse.
 
----
-
-## 🚀 Instalação
-
-1. Clone ou baixe este repositório
-2. Abra `chrome://extensions`
-3. Ative o **Modo do desenvolvedor**
-4. Clique em **Carregar sem compactação** e selecione esta pasta
-
-### ⚙️ Configuração da tecla global (importante!)
-
-1. Acesse `chrome://extensions/shortcuts`
-2. Encontre **"Headset Skip Intro"**
-3. Troque **"No Chrome"** para **Global** na opção "Pula a abertura ou faz Play/Pause"
+### 🆕 O que mudou na v2.0
+- **Suporte Total ao Crunchyroll:** Seletores otimizados para o player moderno.
+- **Arquitetura Robusta:** Migração para Manifest V3 com `background.js` para injeção inteligente.
+- **Smart Detection:** Verificação real de visibilidade (evita cliques fantasmas).
+- **Fallback Automático:** Se não houver intro, funciona como Play/Pause normal.
 
 ---
 
-## 🔍 Como debugar se não funcionar
+## 🛠️ Stack Tecnológica
 
-Abra o DevTools da página (F12 > Console) e procure por mensagens `[Headset Skip Intro]`.
+<div align="left">
 
-Se aparecer `🔍 Botão de skip visível` mas o clique não acontecer, abra uma **Issue** com o seletor que apareceu no log.
+![JavaScript](https://img.shields.io/badge/-Vanilla%20JS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Chrome Extension](https://img.shields.io/badge/-Manifest%20V3-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)
+![Git](https://img.shields.io/badge/-Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
----
-
-## 🛠 Stack
-
-- Vanilla JavaScript (ES6+)
-- Chrome Extension Manifest V3
-- Permissões mínimas: `activeTab`, `scripting`
+</div>
 
 ---
 
-*Headset Skip Intro — Suas maratonas, sem interrupções.* 🍿
+## ⚙️ Instalação e Configuração
+
+### 1️⃣ Instalação Manual
+1. Clone ou baixe este repositório.
+2. Abra `chrome://extensions` no seu navegador.
+3. Ative o **Modo do desenvolvedor** (canto superior direito).
+4. Clique em **Carregar sem compactação** e selecione a pasta do projeto.
+
+### 2️⃣ Configuração do Atalho Global (Obrigatório)
+Para que o botão do fone funcione mesmo com o Chrome em segundo plano:
+1. Acesse `chrome://extensions/shortcuts`.
+2. Encontre o **Headset Skip Intro**.
+3. Na opção "Pula a abertura ou faz Play/Pause", mude o seletor de **No Chrome** para **Global**.
+
+---
+
+## 🔍 Diagnóstico e Debug
+
+Se a extensão não estiver pulando conforme o esperado:
+1. Abra o **Console do DevTools** (F12) na página da maratona.
+2. Procure por logs com o prefixo `[Headset Skip Intro]`.
+3. Se o log disser `🔍 Botão de skip visível` mas nada acontecer, abra uma **Issue** informando o seletor exibido.
+
+---
+
+## 🤝 Contribua
+
+Sinta-se à vontade para abrir **Issues** ou enviar **Pull Requests** com novos seletores para outras plataformas de streaming!
+
+---
+
+<div align="center">
+
+**"Transformando suas maratonas em experiências contínuas"**
+
+![Profile Views](https://komarev.com/ghpvc/?username=mdaniliauskas-skipintro&color=0A66C2&style=for-the-badge)
+
+</div>

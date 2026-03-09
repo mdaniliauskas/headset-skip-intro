@@ -1,50 +1,82 @@
 # Headset Skip Intro 🎧 v2.0
 
-Skip TV show intros on **Crunchyroll**, **Prime Video**, and **Netflix** using just the **MediaPlayPause** button on your Bluetooth headset.
+<div align="center">
+
+[![English](https://img.shields.io/badge/English-🇺🇸-blue?style=for-the-badge)](#) [![Português](https://img.shields.io/badge/Português-🇧🇷-green?style=for-the-badge)](./README.md)
+
+![Project Banner](https://img.shields.io/badge/Crunchyroll--Netflix--Prime%20Video-Skip%20Intro-informational?style=for-the-badge&logo=googlechrome&logoColor=white&color=0A66C2)
+![Status](https://img.shields.io/badge/Status-Stable-brightgreen?style=for-the-badge)
+
+**Skip intros with a single tap on your Bluetooth headset**
+🎯 **Maximum productivity for your anime and TV show binges**
+
+[![LinkedIn](https://img.shields.io/badge/-LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/mdaniliauskas)
+[![Email](https://img.shields.io/badge/-Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:marcelo.daniliauskas@gmail.com)
+[![GitHub](https://img.shields.io/badge/-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/mdaniliauskas)
+
+</div>
 
 ---
 
-## 🆕 What's new in v2.0
+## 🚀 About the Project
 
-| | v1.0 | v2.0 |
-|---|---|---|
-| Crunchyroll | ❌ Did not work | ✅ Correct selectors added |
-| Architecture | `content.js` handled everything | `background.js` injects and executes the skip |
-| Visibility tracking | Did not check | Checks `offsetParent` (visible element) |
-| Fallback Play/Pause | Yes | Yes |
-| Diagnostic logs | Basic | Detailed by selector |
+**Headset Skip Intro** is a Chrome extension designed for binge-watchers who hate losing time with repetitive openings. By integrating directly with the **MediaPlayPause** button (common on Bluetooth headsets), it lets you skip intros on **Crunchyroll**, **Prime Video**, and **Netflix** without ever touching your mouse.
 
----
-
-## 🚀 Installation
-
-1. Clone or download this repository
-2. Open `chrome://extensions`
-3. Enable **Developer mode**
-4. Click on **Load unpacked** and select this folder
-
-### ⚙️ Global shortcut configuration (important!)
-
-1. Go to `chrome://extensions/shortcuts`
-2. Find the **"Headset Skip Intro"** box
-3. Change **"In Chrome"** to **Global** on the "Pula a abertura ou faz Play/Pause" option.
+### 🆕 What's New in v2.0
+- **Full Crunchyroll Support:** Optimized selectors for the modern web player.
+- **Robust Architecture:** Migration to Manifest V3 using `background.js` for smart injection.
+- **Smart Detection:** Real visibility check (prevents phantom clicks).
+- **Auto Fallback:** If no intro is present, it functions as a normal Play/Pause.
 
 ---
 
-## 🔍 How to debug if it doesn't work
+## 🛠️ Tech Stack
 
-Open your page's DevTools (F12 > Console) and look for `[Headset Skip Intro]` messages.
+<div align="left">
 
-If you see `🔍 Botão de skip visível` but the click didn't go through, please open an **Issue** with the selector that appeared in the log.
+![JavaScript](https://img.shields.io/badge/-Vanilla%20JS-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Chrome Extension](https://img.shields.io/badge/-Manifest%20V3-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)
+![Git](https://img.shields.io/badge/-Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 
----
-
-## 🛠 Stack
-
-- Vanilla JavaScript (ES6+)
-- Chrome Extension Manifest V3
-- Minimum permissions: `activeTab`, `scripting`
+</div>
 
 ---
 
-*Headset Skip Intro — Your binges, uninterrupted.* 🍿
+## ⚙️ Installation and Configuration
+
+### 1️⃣ Manual Installation
+1. Clone or download this repository.
+2. Open `chrome://extensions` in your browser.
+3. Enable **Developer Mode** (top right corner).
+4. Click **Load Unpacked** and select the project folder.
+
+### 2️⃣ Global Shortcut Setup (Mandatory)
+For the headset button to work even when Chrome is in the background:
+1. Go to `chrome://extensions/shortcuts`.
+2. Find **Headset Skip Intro**.
+3. Under "Pula a abertura ou faz Play/Pause", change the setting from **In Chrome** to **Global**.
+
+---
+
+## 🔍 Diagnosis and Debugging
+
+If the extension isn't skipping as expected:
+1. Open the **DevTools Console** (F12) on the streaming page.
+2. Look for logs prefixed with `[Headset Skip Intro]`.
+3. If the log says `🔍 Botão de skip visível` but nothing happens, please open an **Issue** with the displayed selector.
+
+---
+
+## 🤝 Contribute
+
+Feel free to open **Issues** or submit **Pull Requests** with new selectors for other streaming platforms!
+
+---
+
+<div align="center">
+
+**"Turning your binges into seamless experiences"**
+
+![Profile Views](https://komarev.com/ghpvc/?username=mdaniliauskas-skipintro&color=0A66C2&style=for-the-badge)
+
+</div>
