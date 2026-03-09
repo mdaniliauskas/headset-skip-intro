@@ -23,23 +23,9 @@
     '.watch-video--skip-content button',
   ];
 
-  // ─── MutationObserver: detecta quando botão aparece no DOM ───────────────
-  const observer = new MutationObserver(() => {
-    for (const sel of ALL_SELECTORS) {
-      const btn = document.querySelector(sel);
-      if (btn && btn.offsetParent !== null) {
-        console.log(`[Headset Skip Intro] 🔍 Botão de skip visível: "${sel}" — pressione MediaPlayPause para pular.`);
-        return;
-      }
-    }
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true,
-    attributes: true,
-    attributeFilter: ["class", "style", "hidden"],
-  });
+  // ─── Observers removidos para máxima economia de CPU/Bateria ───
+  // A busca pelo botão ocorre no momento exato do clique
+  // (acionado pelo background.js quando o headset avisa).
 
   // ─── Message Listener: Executa o clique real quando o background pede ────
   chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -47,32 +33,58 @@
       // 1. Tenta pular abertura
       for (const sel of ALL_SELECTORS) {
         const btn = document.querySelector(sel);
-        // Removemos a checagem "btn.offsetParent !== null" na hora do clique
-        // Motivo: Netflix e Prime muitas vezes escondem a barra de controles por inatividade.
-        // O botão continua existindo no DOM (com display: none ou hidden), mas precisamos
-        // forçar o clique nele mesm assim. O MutationObserver garante que ele só exista na abaertaura.
         if (btn) {
           console.log(`[Headset Skip Intro] 🎯 Executando skip no seletor: ${sel}`);
-          btn.click();
-          btn.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window }));
+          simulateClick(btn);
           sendResponse({ clicked: true });
           return true;
         }
       }
 
-      // 2. Fallback Play/Pause (se for o top window / tiver video real na tela)
-      const video = document.querySelector("video");
-      if (video) {
-        console.log("[Headset Skip Intro] ⏯️ Nenhum botão de skip achado. Toggling Play/Pause.");
-        video.paused ? video.play() : video.pause();
-        sendResponse({ clicked: true });
+      // 1.5 Abortar se for o frame principal do Crunchyroll (sem vídeo)
+      if (host.includes("crunchyroll.com") && document.querySelectorAll("video").length === 0) {
+        console.log("[Headset Skip Intro] Main frame do Crunchyroll ignorando Play/Pause (o iframe cuida disso).");
+        sendResponse({ clicked: false });
         return true;
       }
 
-      sendResponse({ clicked: false });
+      // 2. Fallback Play/Pause: Manipulando a API de vídeo do HTML5 diretamente (funciona em abas inativas)
+      console.log("[Headset Skip Intro] ⏯️ Nenhum botão de skip achado. Alternando estado do vídeo diretamente.");
+
+      const videos = document.querySelectorAll("video");
+      let actedOnVideo = false;
+
+      videos.forEach((video) => {
+        if (video.readyState >= 1) {
+          if (video.paused) {
+            console.log("[Headset Skip Intro] ▶️ Iniciando vídeo...");
+            video.play().catch(e => console.error("[Headset Skip Intro] Erro ao dar play (pode exigir interação prévia):", e));
+          } else {
+            console.log("[Headset Skip Intro] ⏸️ Pausando vídeo...");
+            video.pause();
+          }
+          actedOnVideo = true;
+        }
+      });
+
+      if (!actedOnVideo) {
+        console.log("[Headset Skip Intro] Nenhum vídeo carregado encontrado na página.");
+      }
+
+      sendResponse({ clicked: actedOnVideo });
+      return true;
     }
     return true;
   });
+
+  function simulateClick(el) {
+    const opts = { bubbles: true, cancelable: true, view: window };
+    el.dispatchEvent(new PointerEvent("pointerdown", opts));
+    el.dispatchEvent(new MouseEvent("mousedown", opts));
+    el.dispatchEvent(new PointerEvent("pointerup", opts));
+    el.dispatchEvent(new MouseEvent("mouseup", opts));
+    el.dispatchEvent(new MouseEvent("click", opts));
+  }
 
   console.log(`[Headset Skip Intro] ✅ Ativo e ouvindo em: ${host}`);
 })();

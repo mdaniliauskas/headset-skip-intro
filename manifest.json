@@ -3,7 +3,7 @@
   "name": "Headset Skip Intro",
   "version": "2.0",
   "description": "Pule aberturas no Crunchyroll, Prime Video e Netflix usando o botão do seu fone Bluetooth.",
-  "permissions": ["activeTab", "scripting", "tabs", "webNavigation"],
+  "permissions": ["activeTab", "tabs", "webNavigation"],
   "background": {
     "service_worker": "background.js"
   },
