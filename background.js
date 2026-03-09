@@ -28,22 +28,33 @@ chrome.commands.onCommand.addListener(async (command) => {
       });
     });
   } else {
-    // Prime / Netflix: injeta direto na página principal
+    // Prime / Netflix: injeta em todas as frames para pegar players aninhados (iframes)
     try {
-      await chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        func: triggerSkipPrimeNetflix,
+      const results = await chrome.scripting.executeScript({
+        target: { tabId: tab.id, allFrames: true },
+        func: triggerSkipOnly,
       });
+
+      // Se resultado for um array, algum frame conseguiu dar skip?
+      const skipped = results && Array.isArray(results) && results.some(res => res.result === true);
+
+      if (!skipped) {
+        console.log("[HSI] Nenhum botão de skip encontrado em nenhum frame. Executando Play/Pause.");
+        await chrome.scripting.executeScript({
+          target: { tabId: tab.id, allFrames: true },
+          func: triggerPlayPause,
+        });
+      }
     } catch (err) {
       console.warn("[HSI] Erro:", err.message);
     }
   }
 });
 
-function triggerSkipPrimeNetflix() {
+function triggerSkipOnly() {
   const host = window.location.hostname;
   const SELECTORS = {
-    prime:   [".skipelement", "button[data-testid='skip-button']", ".atvwebplayersdk-skipelement-button"],
+    prime: [".skipelement", "button[data-testid='skip-button']", ".atvwebplayersdk-skipelement-button"],
     netflix: ["[data-uia='player-skip-intro']", "[data-uia='player-skip-recap']", ".watch-video--skip-content button"],
   };
 
@@ -55,17 +66,19 @@ function triggerSkipPrimeNetflix() {
     const btn = document.querySelector(sel);
     if (btn && btn.offsetParent !== null) {
       console.log(`[HSI] Executando skip no seletor: ${sel}`);
-      // A maioria das plataformas modernas reage melhor ao .click() nativo
       btn.click();
-      
-      // Fallback disparando o MouseEvent caso o framework (ex: React) exija
       btn.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window }));
-      return;
+      return true; // Informa o background.js que o clique ocorreu
     }
   }
+  return false;
+}
 
-  // Fallback Play/Pause caso nenhum botão de intro seja encontrado
-  console.log("[HSI] Nenhum botão de skip encontrado. Executando Play/Pause.");
+function triggerPlayPause() {
   const video = document.querySelector("video");
-  if (video) video.paused ? video.play() : video.pause();
+  if (video) {
+    video.paused ? video.play() : video.pause();
+    return true; // Indica que achou um video e deu play/pause
+  }
+  return false;
 }
