@@ -1,42 +1,53 @@
 {
   "manifest_version": 3,
   "name": "Headset Skip Intro",
-  "version": "1.0",
-  "description": "Usa o botão de Play do fone de ouvido para pular a abertura (Skip Intro) no Amazon Prime Video e Netflix.",
-  "permissions": [
-    "activeTab",
-    "scripting"
-  ],
-  "host_permissions": [
-    "*://*.primevideo.com/*",
-    "*://*.amazon.com/*",
-    "*://*.amazon.com.br/*",
-    "*://*.netflix.com/*"
-  ],
+  "version": "2.0",
+  "description": "Pule aberturas no Crunchyroll, Prime Video e Netflix usando o botão do seu fone Bluetooth.",
+  "permissions": ["activeTab", "scripting", "tabs", "webNavigation"],
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
       "matches": [
+        "*://*.crunchyroll.com/watch/*",
         "*://*.primevideo.com/*",
-        "*://*.amazon.com/*",
-        "*://*.amazon.com.br/*",
-        "*://*.netflix.com/*"
+        "*://*.amazon.com.br/gp/video/*",
+        "*://*.amazon.com/gp/video/*",
+        "*://*.netflix.com/watch/*"
       ],
-      "js": [
-        "content.js"
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://static.crunchyroll.com/vilos-v2/web/vilos/player.html*"
       ],
-      "run_at": "document_end"
+      "js": ["content_crunchyroll_player.js"],
+      "run_at": "document_idle",
+      "all_frames": true
     }
   ],
   "commands": {
-    "skip-intro-or-play": {
+    "skip-intro": {
       "suggested_key": {
         "default": "MediaPlayPause"
       },
-      "description": "Pula a abertura ou faz o Play/Pause",
+      "description": "Pula a abertura ou faz Play/Pause",
       "global": true
+    }
+  },
+  "icons": {
+    "16":  "icons/icon16.png",
+    "48":  "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Headset Skip Intro",
+    "default_icon": {
+      "16":  "icons/icon16.png",
+      "48":  "icons/icon48.png",
+      "128": "icons/icon128.png"
     }
   }
 }
