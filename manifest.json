@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Headset Skip Intro",
+  "version": "1.0",
+  "description": "Usa o botão de Play do fone de ouvido para pular a abertura (Skip Intro) no Amazon Prime Video e Netflix.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "*://*.primevideo.com/*",
+    "*://*.amazon.com/*",
+    "*://*.amazon.com.br/*",
+    "*://*.netflix.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.primevideo.com/*",
+        "*://*.amazon.com/*",
+        "*://*.amazon.com.br/*",
+        "*://*.netflix.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  "commands": {
+    "skip-intro-or-play": {
+      "suggested_key": {
+        "default": "MediaPlayPause"
+      },
+      "description": "Pula a abertura ou faz o Play/Pause",
+      "global": true
+    }
+  }
+}
