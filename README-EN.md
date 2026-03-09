@@ -23,10 +23,11 @@
 **Headset Skip Intro** is a Chrome extension designed for binge-watchers who hate losing time with repetitive openings. By integrating directly with the **MediaPlayPause** button (common on Bluetooth headsets), it lets you skip intros on **Crunchyroll**, **Prime Video**, and **Netflix** without ever touching your mouse.
 
 ### 🆕 What's New in v2.0
-- **Full Crunchyroll Support:** Optimized selectors for the modern web player.
-- **Robust Architecture:** Migration to Manifest V3 using `background.js` for smart injection.
-- **Smart Detection:** Real visibility check (prevents phantom clicks).
-- **Auto Fallback:** If no intro is present, it functions as a normal Play/Pause.
+- **Manual Skip via Bluetooth Headset:** You are in control. Intentionally skip the intro when YOU want, with no "forced auto-skip" accidentally jumping over important prologue scenes.
+- **Background Power:** Guaranteed functionality even outside the active window! Whether you're gaming, working on another screen, or with Chrome minimized: press the headset button, and the intro skips instantly.
+- **Full Crunchyroll Support:** Optimized selectors and direct video API control for the modern web player.
+- **Extreme Performance Architecture:** Migration to Manifest V3 with zero background screen monitoring (0% idle CPU and battery drain).
+- **Auto Fallback:** If no intro is visible, it plays smart and functions as a normal Play/Pause for your headset, even on inactive tabs!
 
 ---
 

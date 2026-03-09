@@ -20,13 +20,14 @@
 
 ## 🚀 Sobre o Projeto
 
-O **Headset Skip Intro** é uma extensão para Chrome projetada para quem ama maratonar mas odeia perder tempo com aberturas repetitivas. Integrando-se diretamente com o botão de **MediaPlayPause** (comum em fones Bluetooth), ela permite pular intros no **Crunchyroll**, **Prime Video** e **Netflix** sem precisar tirar a mão do fone ou usar o mouse.
+O **Headset Skip Intro** é uma extensão para Chrome projetada para quem ama maratonar mas odeia perder tempo com aberturas repetitivas. Integrando-se diretamente com o botão de **MediaPlayPause** (comum em fones Bluetooth), ela permite pular intros no **Crunchyroll**, **Prime Video** e **Netflix** com um toque, sem precisar alcançar o mouse.
 
 ### 🆕 O que mudou na v2.0
-- **Suporte Total ao Crunchyroll:** Seletores otimizados para o player moderno.
-- **Arquitetura Robusta:** Migração para Manifest V3 com `background.js` para injeção inteligente.
-- **Smart Detection:** Verificação real de visibilidade (evita cliques fantasmas).
-- **Fallback Automático:** Se não houver intro, funciona como Play/Pause normal.
+- **Pulo Manual via Fone Bluetooth:** Você no controle. Pule a abertura intencionalmente quando quiser, sem "auto-skip forçado" pulando cenas importantes por engano.
+- **Poder em Segundo Plano (Background Power):** Funcionamento garantido mesmo fora da janela ativa! Esteja jogando, trabalhando em outra tela ou com o Chrome minimizado: apertou no fone, a abertura pula na hora.
+- **Suporte Total ao Crunchyroll:** Seletores otimizados e controle direto da API de vídeo para o player moderno.
+- **Arquitetura Extreme Performance:** Migração para Manifest V3 sem monitoramento constante de tela (0% de CPU e bateria em repouso).
+- **Fallback Automático:** Se não houver intro visível, joga inteligente e funciona como Play/Pause normal do seu fone, em qualquer aba inativa!
 
 ---
 
