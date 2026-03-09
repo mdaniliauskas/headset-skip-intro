@@ -54,13 +54,18 @@ function triggerSkipPrimeNetflix() {
   for (const sel of selectors) {
     const btn = document.querySelector(sel);
     if (btn && btn.offsetParent !== null) {
-      btn.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true }));
-      btn.dispatchEvent(new PointerEvent("pointerup",   { bubbles: true }));
-      btn.dispatchEvent(new MouseEvent("click",         { bubbles: true }));
+      console.log(`[HSI] Executando skip no seletor: ${sel}`);
+      // A maioria das plataformas modernas reage melhor ao .click() nativo
+      btn.click();
+      
+      // Fallback disparando o MouseEvent caso o framework (ex: React) exija
+      btn.dispatchEvent(new MouseEvent("click", { bubbles: true, cancelable: true, view: window }));
       return;
     }
   }
 
+  // Fallback Play/Pause caso nenhum botão de intro seja encontrado
+  console.log("[HSI] Nenhum botão de skip encontrado. Executando Play/Pause.");
   const video = document.querySelector("video");
   if (video) video.paused ? video.play() : video.pause();
 }
